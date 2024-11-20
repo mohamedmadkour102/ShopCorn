@@ -1,0 +1,56 @@
+﻿
+@model ProductViewModels
+@{
+    ViewBag.PageTitle = "Product Managment";
+    ViewBag.CardTitle = "Create Product";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+
+
+<form method="post" enctype="multipart/form-data" >
+    <div class="mb-3">
+        <label asp-for="product.Name"></label>
+        <input asp-for="product.Name" class="form-control" />
+        <span asp-validation-for="product.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="product.Description"></label>
+        <input asp-for="product.Description" class="form-control" />
+        <span asp-validation-for="product.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="product.Price"></label>
+        <input asp-for="product.Price" class="form-control" />
+        <span asp-validation-for="product.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="product.Image"></label>
+        <input type="file" name="File" id="imgfile" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="product.CategoryId"></label>
+        <select asp-for="product.CategoryId" class="form-control"  asp-items="Model.CategoryList">
+            <option disabled selected >-- Select Category -- </option>
+            
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <button asp-action="Index" asp-controller="Category" class="btn btn-warning">Back To List </button>
+
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@* here the client-side validition
+   the benfits of client-side is , it prevent u from going to the server if u dont entered the
+   data in well form. and this very useful bec u shouldn't go to server alot even if u have many requests
+   the server goes down.
+*@

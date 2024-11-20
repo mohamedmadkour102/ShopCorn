@@ -1,0 +1,48 @@
+﻿@model Category
+@{
+    ViewBag.PageTitle = "Category Managment";
+    ViewBag.CardTitle = "Create Category";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+@*label : the address of the input 
+  asp-for : for ex i will put the data in the name property in category table 
+  btn btn-primary ==> blue 
+  btn btn-warning ==> yellow
+*@
+
+@*
+    the create action of type get will show to me this view 
+    after i enter the data to the form an press create it will go to the action of create of type post 
+    and this action will add the data entered to the DB and redirect me to the index with the category 
+    that i created 
+*@
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <button asp-action="Index" asp-controller="Category" class="btn btn-warning">Back To List </button>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@* here the client-side validition 
+   the benfits of client-side is , it prevent u from going to the server if u dont entered the 
+   data in well form. and this very useful bec u shouldn't go to server alot even if u have many requests 
+   the server goes down.
+*@
